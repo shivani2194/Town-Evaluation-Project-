@@ -228,7 +228,21 @@ testing
 HINT: Use some of the ES6 features: classes, subclasses, template strings, default parameters, maps, arrow functions, destructuring, etc.
 
 */
+/* Note: Try to use const instead of let where ever its possible. If you feel the value of the var is not going to change then go with const thats a good practice for JS developer */
+
 let intAge = 0, streetLength = 0;
+
+/*Question : What if i do this would this code work or will throw an error
+class townData {
+    constructor (townName, year){
+        this.name = townName;
+        this.buildYear = year;
+    }
+}
+
+*/
+
+
 class townData {
     constructor (name, buildYear){
         this.name = name;
@@ -236,7 +250,8 @@ class townData {
     }
 }
 class Park extends townData {
-    constructor (name, buildYear, numOfTree, parkArea, ){
+    constructor(name, buildYear, numOfTree, parkArea, ) {
+        /* Question: What would happen if i write super at the end insted of the first line of the cosntructor */
         super(name, buildYear);
         this.numOfTree = numOfTree;
         this.parkArea = parkArea;
@@ -245,7 +260,8 @@ class Park extends townData {
        let age = new Date().getFullYear() - bldYear;
        return age;
     }
-    calcTreeDesity(nOfTrees, prkArea){
+    calcTreeDesity(nOfTrees, prkArea) {
+        /* find a better way to return use only one line never write redundant code */
         let treeDensity = nOfTrees/prkArea;
         return treeDensity;
     }
@@ -255,7 +271,7 @@ class Street extends townData {
         super(name, buildYear)
         this.length = length;
         this.size = size;
-        
+        /*Question: why do we write this on the line above whats the point of it*/
     }
 }
 
