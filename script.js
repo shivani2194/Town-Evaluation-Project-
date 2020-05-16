@@ -207,7 +207,28 @@ const kingsvilleStreet = new Street ('kingsville', 2004, 800, 'Big');
 
 const rainbowStreet = new Street('Rainbow', 1880, 600);
 */
-let intAge, streetLength = 0;
+//----------------------Coding Challenge Question-----------------
+/*
+
+Suppose that you're working in a small town administration, and you're in charge of two town elements:
+1. Parks
+2. Streets
+
+It's a very small town, so right now there are only 3 parks and 4 streets. All parks and streets have a name and a build year.
+
+At an end-of-year meeting, your boss wants a final report with the following:
+1. Tree density of each park in the town (forumla: number of trees/park area)
+2. Average age of each town's park (forumla: sum of all ages/number of parks)
+3. The name of the park that has more than 1000 trees
+4. Total and average length of the town's streets
+5. Size classification of all streets: tiny/small/normal/big/huge. If the size is unknown, the default is normal
+
+All the report data should be printed to the console.
+
+HINT: Use some of the ES6 features: classes, subclasses, template strings, default parameters, maps, arrow functions, destructuring, etc.
+
+*/
+let intAge = 0, streetLength = 0;
 class townData {
     constructor (name, buildYear){
         this.name = name;
@@ -246,7 +267,7 @@ const pinkHeavenPark = new Park('pink Heaven Park', 1991, 500, 1000);
 //Creating Parks with reference to the constructors created above
 const ottawaStreet = new Street('Ottawa', 2001, 500, 'Small');
 const dougallStreet = new Street('Dougall', 1990, 1500, 'Huge');
-const philipStreet = new Street('Philip', 2010, 650, 'Normal');
+const philipStreet = new Street('Philip', 2010, 650,);
 const kingsvilleStreet = new Street ('kingsville', 2004, 800, 'Big');
 const rainbowStreet = new Street('Rainbow', 1880, 600);
 
@@ -264,9 +285,11 @@ parksArray.map(el => {
 //Calculate average age of Parks
 parksArray.map(el =>{
     let age = el.calcAge(el.buildYear);
-    intAge = age + intAge
+    intAge = age + intAge;
+   // console.log(intAge);
+    //console.log(age);
 })
-let averageAge = ( intAge/(parksArray.length));
+let averageAge = ( intAge / (parksArray.length));
 console.log(`Average age of all 3 parks is ${averageAge} years.`);
 //Calculate and print tree desnity for each parksArray
 parksArray.map(el =>{
