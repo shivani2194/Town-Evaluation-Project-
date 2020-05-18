@@ -230,7 +230,8 @@ HINT: Use some of the ES6 features: classes, subclasses, template strings, defau
 */
 /* Note: Try to use const instead of let where ever its possible. If you feel the value of the var is not going to change then go with const thats a good practice for JS developer */
 
-let intAge = 0, streetLength = 0;
+let intAge = 0,
+  streetLength = 0;
 
 /*Question : What if i do this would this code work or will throw an error
 class townData {
@@ -242,85 +243,96 @@ class townData {
 
 */
 
-
 class townData {
-    constructor (name, buildYear){
-        this.name = name;
-        this.buildYear = buildYear;
-    }
+  constructor(name, buildYear) {
+    this.name = name;
+    this.buildYear = buildYear;
+  }
 }
 class Park extends townData {
-    constructor(name, buildYear, numOfTree, parkArea, ) {
-        /* Question: What would happen if i write super at the end insted of the first line of the cosntructor */
-        super(name, buildYear);
-        this.numOfTree = numOfTree;
-        this.parkArea = parkArea;
-    }
-    calcAge(bldYear){
-       let age = new Date().getFullYear() - bldYear;
-       return age;
-    }
-    calcTreeDesity(nOfTrees, prkArea) {
-        /* find a better way to return use only one line never write redundant code */
-        let treeDensity = nOfTrees/prkArea;
-        return treeDensity;
-    }
+  constructor(name, buildYear, numOfTree, parkArea) {
+    /* Question: What would happen if i write super at the end insted of the first line of the cosntructor */
+    super(name, buildYear);
+    this.numOfTree = numOfTree;
+    this.parkArea = parkArea;
+  }
+  calcAge(bldYear) {
+    return new Date().getFullYear() - bldYear;
+  }
+  calcTreeDesity(nOfTrees, prkArea) {
+    /* find a better way to return use only one line never write redundant code */
+   return (nOfTrees / prkArea).toFixed(2);
+ 
+    
+  }
 }
 class Street extends townData {
-    constructor (name, buildYear, length, size = 'Normal'){
-        super(name, buildYear)
-        this.length = length;
-        this.size = size;
-        /*Question: why do we write this on the line above whats the point of it*/
-    }
+  constructor(name, buildYear, length, size = "Normal") {
+    super(name, buildYear);
+    this.length = length;
+    this.size = size;
+    /*Question: why do we write this on the line above whats the point of it*/
+  }
 }
 
-//Creating Parks with reference to the constructors created above 
-const butterflyPark = new Park ('Butterfly Park', 2000, 1000, 900);
-const cherryBlossomPark = new Park ('cherry Blossom Park', 1994, 850, 850);
-const pinkHeavenPark = new Park('pink Heaven Park', 1991, 500, 1000);
+//Creating Parks with reference to the constructors created above
+const butterflyPark = new Park("Butterfly Park", 2000, 1000, 900);
+const cherryBlossomPark = new Park("cherry Blossom Park", 1994, 850, 850);
+const pinkHeavenPark = new Park("pink Heaven Park", 1991, 500, 1000);
 
 //Creating Parks with reference to the constructors created above
-const ottawaStreet = new Street('Ottawa', 2001, 500, 'Small');
-const dougallStreet = new Street('Dougall', 1990, 1500, 'Huge');
-const philipStreet = new Street('Philip', 2010, 650,);
-const kingsvilleStreet = new Street ('kingsville', 2004, 800, 'Big');
-const rainbowStreet = new Street('Rainbow', 1880, 600);
+const ottawaStreet = new Street("Ottawa", 2001, 500, "Small");
+const dougallStreet = new Street("Dougall", 1990, 1500, "Huge");
+const philipStreet = new Street("Philip", 2010, 650);
+const kingsvilleStreet = new Street("kingsville", 2004, 800, "Big");
+const rainbowStreet = new Street("Rainbow", 1880, 600);
 
 //Array containing all the parks and streets in the town
-const parksArray = [butterflyPark, cherryBlossomPark,pinkHeavenPark];
-const streetsArray = [ottawaStreet, dougallStreet, philipStreet, kingsvilleStreet, rainbowStreet];
+const parksArray = [butterflyPark, cherryBlossomPark, pinkHeavenPark];
+const streetsArray = [
+  ottawaStreet,
+  dougallStreet,
+  philipStreet,
+  kingsvilleStreet,
+  rainbowStreet,
+];
 
-console.log('--------------Data of PARKS across the town--------------');
+console.log("--------------Data of PARKS across the town--------------");
 //Print the name of Park with more than 1000 trees
-parksArray.map(el => {
-    if(el.numOfTree >= 1000) {
-        console.log(`${el.name} has more than 1000 trees!`);
-    }
+parksArray.map((el) => {
+  if (el.numOfTree >= 1000) {
+    console.log(`${el.name} has more than 1000 trees!`);
+  }
 });
 //Calculate average age of Parks
-parksArray.map(el =>{
-    let age = el.calcAge(el.buildYear);
-    intAge = age + intAge;
-   // console.log(intAge);
-    //console.log(age);
-})
-let averageAge = ( intAge / (parksArray.length));
+parksArray.map((el) => {
+  let age = el.calcAge(el.buildYear);
+  intAge = age + intAge;
+  // console.log(intAge);
+  //console.log(age);
+});
+let averageAge = intAge / parksArray.length;
 console.log(`Average age of all 3 parks is ${averageAge} years.`);
 //Calculate and print tree desnity for each parksArray
-parksArray.map(el =>{
-    let treednsty =  el.calcTreeDesity(el.numOfTree,el.parkArea)
-     console.log(`${el.name} has a tree density of ${treednsty} trees per square km.`)
-})
+parksArray.map((el) => {
+  let treednsty = el.calcTreeDesity(el.numOfTree, el.parkArea);
+  console.log(
+    `${el.name} has a tree density of ${treednsty} trees per square km.`
+  );
+});
 
-console.log('--------------Data of STREETS across the town--------------');
+console.log("--------------Data of STREETS across the town--------------");
 //Calculate and print total and average length of streets in the townData
-streetsArray.map(el =>{
-    streetLength = el.length + streetLength;
-})
-let streetAverage = (streetLength / (streetsArray.length))
-console.log(`The total length of streets across the town is ${streetLength}kms, whereas the average length of all the streets is ${streetAverage} kms.`)
+streetsArray.map((el) => {
+  streetLength = el.length + streetLength;
+});
+let streetAverage = streetLength / streetsArray.length;
+console.log(
+  `The total length of streets across the town is ${streetLength}kms, whereas the average length of all the streets is ${streetAverage} kms.`
+);
 //Print the name of each street with its size, if the size is not provided, print 'normal' as default
-streetsArray.map(el =>{
-    console.log(`${el.name}, built in ${el.buildYear}, is a ${el.size} street.`);
-})
+streetsArray.map((el) => {
+  console.log(`${el.name}, built in ${el.buildYear}, is a ${el.size} street.`);
+});
+
+
